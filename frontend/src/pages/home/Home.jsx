@@ -6,6 +6,7 @@ import MessageContainer from "../../components/messages/MessageContainer";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useAuthContext } from "../../context/AuthContext";
 import StudentTable from "../StudentTable";
+import LogoutButton from "../../components/sidebar/LogoutButton";
 
 const Home = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -95,14 +96,17 @@ const Home = () => {
               Search
             </button> */}
           </div>
-          <button
+          <LogoutButton className={`text-gray-800 hover:text-gray-600`}>
+            Logout
+          </LogoutButton>
+          {/* <button
             className={`text-gray-800 hover:text-gray-600 ${
               activePage === "Logout" ? "font-bold" : ""
             }`}
             onClick={() => setActivePage("Logout")}
           >
             Logout
-          </button>
+          </button> */}
         </div>
       </nav>
 
@@ -133,9 +137,9 @@ const Home = () => {
                 <p className="card-title">{authUser.semester}</p>
                 <p className="card-title">{authUser.gpa}</p>
 
-                <div className="card-actions justify-end">
+                {/* <div className="card-actions justify-end">
                   <button className="btn btn-primary">Update profile</button>
-                </div>
+                </div> */}
               </div>
             </div>
           )}

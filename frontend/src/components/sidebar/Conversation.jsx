@@ -21,7 +21,7 @@ const Conversation = ({ conversation, lastIdx }) => {
         </div>
         <div className="flex flex-col flex-1">
           <div className="flax gap-3 justify-between">
-            <p className="font-bold text-black">{conversation.username}</p>
+            <p className="font-bold">{conversation.username}</p>
           </div>
         </div>
       </div>
