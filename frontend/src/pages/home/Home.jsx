@@ -103,73 +103,73 @@ const Home = () => {
       </nav>
 
       {/* Main Content */}
-      <div
-        className="flex-col flex relative"
-        style={{ paddingTop: "12%", overflowY: "auto" }}
-      >
-        <main
-          className="flex-grow container mx-auto px-4 py-6 flex overflow-y-auto relative"
-          style={{ paddingBottom: "10%" }}
+      <div className="flex flex-col md:flex-row flex-grow pt-24">
+        {/* Sidebar */}
+        <div
+          className={`fixed md:relative z-50 bg-gray-100 md:bg-transparent md:flex md:w-1/4 lg:w-1/5 h-full transition-transform transform ${
+            sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+          }`}
         >
-          {/* Profile card */}
-          {activePage === "Dashboard" && (
-            <div className="card card-side bg-base-100 shadow-xl flex-2">
-              <figure>
-                <img
-                  src={`https://avatar.iran.liara.run/username?username=${authUser.username}`}
-                  alt="pfp"
-                  className="rounded-full h-14"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">{authUser.username}</h2>
-                <p>Student</p>
-                <p className="card-title">{authUser.email}</p>
-                <p className="card-title">{authUser.semester}</p>
-                <p className="card-title">{authUser.gpa}</p>
-              </div>
-            </div>
-          )}
+          <Sidebar onUserSelect={handleUserSelection} />
+        </div>
 
-          {/* Real-time Chat Sidebar and Message Container */}
+        {/* Content */}
+        <div
+          className={`flex-1 ${
+            userSelected ? "w-full" : "md:w-3/4 lg:w-4/5"
+          } transition-all`}
+        >
           {activePage === "Conversation" && (
-            <div className="flex w-full h-full">
-              {!userSelected && (
-                <div
-                  className="w-1/3 max-w-xs overflow-y-auto"
-                  style={{ overflowY: "auto" }}
+            <div className="relative h-full">
+              {userSelected && (
+                <button
+                  onClick={handleBack}
+                  className="absolute top-4 left-4 bg-gray-800 text-white p-2 rounded z-50"
                 >
-                  <Sidebar onUserSelect={handleUserSelection} />
-                </div>
+                  Back
+                </button>
               )}
-              <div
-                className={`flex-1 overflow-y-auto relative ${
-                  userSelected ? "w-full" : "w-2/3"
-                }`}
-                style={{ overflowY: "auto" }}
-              >
-                {userSelected && (
-                  <button
-                    onClick={handleBack}
-                    className="absolute top-4 left-4 bg-gray-800 text-white p-2 rounded z-50"
-                  >
-                    Back
-                  </button>
-                )}
-                <MessageContainer />
+              <MessageContainer />
+            </div>
+          )}
+
+          {activePage === "Dashboard" && (
+            <div className="p-4">
+              <div className="card card-side bg-base-100 shadow-xl flex-2">
+                <figure>
+                  <img
+                    src={`https://avatar.iran.liara.run/username?username=${authUser.username}`}
+                    alt="pfp"
+                    className="rounded-full h-14"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title">{authUser.username}</h2>
+                  <p>Student</p>
+                  <p className="card-title">{authUser.email}</p>
+                  <p className="card-title">{authUser.semester}</p>
+                  <p className="card-title">{authUser.gpa}</p>
+                </div>
               </div>
             </div>
           )}
-        </main>
 
-        {/* Overlay */}
-        {sidebarOpen && (
-          <div
-            className="fixed inset-0 bg-black opacity-50 z-40 md:hidden"
-            onClick={closeSidebar}
-          ></div>
-        )}
+          {/* Other content */}
+          {activePage !== "Conversation" && (
+            <div className="p-4">
+              {/* Additional content can be added here */}
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* Overlay for Sidebar on mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-40 md:hidden"
+          onClick={closeSidebar}
+        ></div>
+      )}
     </div>
   );
 };
