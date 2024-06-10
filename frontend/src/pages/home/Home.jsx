@@ -73,7 +73,7 @@ const Home = () => {
               }`}
               onClick={() => setActivePage("Dashboard")}
             >
-              <img src="../assests/dashboard.png" />
+              {/* <img src="../assests/dashboard.png" /> */}
               Dashboard
             </button>
             <button
@@ -82,7 +82,7 @@ const Home = () => {
               }`}
               onClick={() => setActivePage("Conversation")}
             >
-              <img src="../assests/conversation.png" />
+              {/* <img src="../assests/conversation.png" /> */}
               Conversation
             </button>
             {/* <button
