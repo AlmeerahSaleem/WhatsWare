@@ -176,6 +176,7 @@ const Home = () => {
 
 export default Home;
 
+// starter
 // import React, { useState, useEffect } from "react";
 // import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 // import ProfilePic from "../../assets/pfp.png";
