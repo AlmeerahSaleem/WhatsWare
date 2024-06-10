@@ -73,6 +73,7 @@ const Home = () => {
               }`}
               onClick={() => setActivePage("Dashboard")}
             >
+              <img src="/dashboard.png" />
               Dashboard
             </button>
             <button
@@ -81,16 +82,18 @@ const Home = () => {
               }`}
               onClick={() => setActivePage("Conversation")}
             >
+              <img src="/conversation.png" />
               Conversation
             </button>
-            <button
+            {/* <button
               className={`text-gray-800 hover:text-gray-600 ${
                 activePage === "Search" ? "font-bold" : ""
               }`}
               onClick={() => setActivePage("Search")}
             >
+              <img src="/search.png"/>
               Search
-            </button>
+            </button> */}
           </div>
           <button
             className={`text-gray-800 hover:text-gray-600 ${
@@ -157,12 +160,12 @@ const Home = () => {
             </div>
           )}
 
-          {/* search page */}
+          {/* search page
           {activePage === "Search" && (
             <div className="flex-1">
-              {/* Render  Search content here */} <StudentTable />{" "}
+              {/* Render  Search content here <StudentTable />{" "}
             </div>
-          )}
+          )}*/}
 
           {/* Render Dashboard or Search content here */}
           {activePage !== "Conversation" && (
