@@ -12,7 +12,6 @@ const useListenMessage = () => {
     socket?.on("newMessage", (newMessage) => {
       const sound = new Audio(notification);
       sound.play();
-      alert(`New message received: ${newMessage.text}`); // Display a popup notification
       setMessages([...messages, newMessage]);
     });
 

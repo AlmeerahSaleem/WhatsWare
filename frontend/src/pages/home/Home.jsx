@@ -54,10 +54,10 @@ const Home = () => {
     <div className="h-screen w-screen flex flex-col overflow-hidden">
       {/* First Navbar */}
       <header
-        className="fixed top-0 left-0 w-full shadow-md z-50"
+        className="fixed  top-0 left-0 w-full shadow-md z-50"
         style={{ height: "10%" }}
       >
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
           <button className="md:hidden text-2xl" onClick={toggleSidebar}>
             {sidebarOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
           </button>
@@ -70,14 +70,39 @@ const Home = () => {
             Toggle Theme
           </button>
         </div>
+        <div>
+          <div className="container mx-auto bg-gray-200 rounded-2xl  px-4 py-2 flex items-center justify-between">
+            <div className="flex space-x-4">
+              <button
+                className={`text-gray-800 hover:text-gray-600 ${
+                  activePage === "Dashboard" ? "font-bold" : ""
+                }`}
+                onClick={() => setActivePage("Dashboard")}
+              >
+                Dashboard
+              </button>
+              <button
+                className={`text-gray-800 hover:text-gray-600 ${
+                  activePage === "Conversation" ? "font-bold" : ""
+                }`}
+                onClick={() => setActivePage("Conversation")}
+              >
+                Conversation
+              </button>
+            </div>
+            <LogoutButton className="text-gray-800 hover:text-gray-600">
+              Logout
+            </LogoutButton>
+          </div>
+        </div>
       </header>
 
       {/* Second Navbar */}
-      <nav
-        className="fixed top-8 left-0 w-full bg-gray-200 shadow-md z-40"
+      {/* <nav
+        className="fixed  top-[5] left-[0%] w-full bg-green-500 shadow-md z-40"
         style={{ height: "6%", top: "10%" }}
       >
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+        <div className="container mx-auto bg-orange-500 px-4 py-2 flex items-center justify-between">
           <div className="flex space-x-4">
             <button
               className={`text-gray-800 hover:text-gray-600 ${
@@ -100,27 +125,31 @@ const Home = () => {
             Logout
           </LogoutButton>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Main Content */}
-      <div className="flex flex-col md:flex-row flex-grow pt-24">
+      <div className="flex  flex-col md:flex-row h-full pt-24">
         {/* Sidebar */}
         <div
-          className={`fixed md:relative z-50 bg-gray-100 md:bg-transparent md:flex md:w-1/4 lg:w-1/5 h-full transition-transform transform ${
+          className={`fixed  md:relative z-50 bg-gray-100 md:bg-transparent  transition-transform transform ${
             sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
           }`}
         >
-          <Sidebar onUserSelect={handleUserSelection} />
+          {activePage === "Conversation" && (
+            <Sidebar onUserSelect={handleUserSelection} />
+          )}
         </div>
 
         {/* Content */}
         <div
           className={`flex-1 ${
-            userSelected ? "w-full" : "md:w-3/4 lg:w-4/5"
+            userSelected
+              ? "w-full h-full "
+              : "  h-full  flex justify-center items-center "
           } transition-all`}
         >
           {activePage === "Conversation" && (
-            <div className="relative h-full">
+            <div className="relative w-full flex align h-full pt-10">
               {userSelected && (
                 <button
                   onClick={handleBack}
@@ -134,8 +163,8 @@ const Home = () => {
           )}
 
           {activePage === "Dashboard" && (
-            <div className="p-4">
-              <div className="card card-side bg-base-100 shadow-xl flex-2">
+            <div className="p-4 ">
+              <div className="card card-side bg-base-100 w-[100%]  shadow-xl flex-2">
                 <figure>
                   <img
                     src={`https://avatar.iran.liara.run/username?username=${authUser.username}`}
